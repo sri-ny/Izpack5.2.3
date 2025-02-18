@@ -1,0 +1,30 @@
+<izpack>
+    <information>
+        <applicationName>Notepad++ and 7-Zip Installer</applicationName>
+        <version>1.0</version>
+        <vendor>Your Company</vendor>
+        <os>Windows</os>
+        <osfamily>Windows</osfamily>
+    </information>
+    <panels>
+        <panel classname="com.izforge.izpack.panels.UserInputPanel"/>
+        <panel classname="com.izforge.izpack.panels.TargetPanel"/>
+        <panel classname="com.izforge.izpack.panels.InstallPanel"/>
+        <panel classname="com.izforge.izpack.panels.ShortcutPanel"/>
+    </panels>
+    <variables>
+        <variable name="INSTALL_PATH" value="$INSTALL_PATH"/>
+    </variables>
+    <packs>
+        <pack id="notepadpp" required="true">
+            <description>Notepad++</description>
+            <file src="installers/Notepad++_setup.exe" targetdir="$INSTALL_PATH/Notepad++"/>
+            <executable targetfile="$INSTALL_PATH/Notepad++/Notepad++_setup.exe" executionStage="postinstall"/>
+        </pack>
+        <pack id="7zip" required="true">
+            <description>7-Zip</description>
+            <file src="installers/7zip_installer.exe" targetdir="$INSTALL_PATH/7zip"/>
+            <executable targetfile="$INSTALL_PATH/7zip/7zip_installer.exe" executionStage="postinstall"/>
+        </pack>
+    </packs>
+</izpack>
