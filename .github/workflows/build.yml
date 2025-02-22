@@ -31,7 +31,7 @@ jobs:
         IZPACK_HOME: ${{ github.workspace }}/tools
 
     - name: Upload Installer Artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: installer
         path: dist/installer.jar
