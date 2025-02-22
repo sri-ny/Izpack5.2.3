@@ -1,0 +1,37 @@
+name: Build IzPack Installer
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Java
+      uses: actions/setup-java@v2
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+
+    - name: Install Apache Ant
+      run: sudo apt-get install -y ant
+
+    - name: Build Installer
+      run: ant -f build.xml build
+      env:
+        IZPACK_HOME: ${{ github.workspace }}/tools
+
+    - name: Upload Installer Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: installer
+        path: dist/installer.jar
