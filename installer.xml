@@ -3,8 +3,6 @@
         <applicationName>Notepad++ and 7-Zip Installer</applicationName>
         <version>1.0</version>
         <vendor>Your Company</vendor>
-        <os>Windows</os>
-        <osfamily>Windows</osfamily>
     </information>
     <panels>
         <panel classname="com.izforge.izpack.panels.UserInputPanel"/>
