@@ -2,28 +2,31 @@
     <property name="src.dir" location="src"/>
     <property name="build.dir" location="build"/>
     <property name="dist.dir" location="dist"/>
-    <property name="izpack.jar" location="${env.IZPACK_HOME}/izpack-dist-5.2.3.jar"/>
+    <property name="izpack.jar" location="tools/izpack-dist-5.2.3.jar"/>
 
     <target name="clean">
+        <echo message="Cleaning build and dist directories..."/>
         <delete dir="${build.dir}"/>
         <delete dir="${dist.dir}"/>
     </target>
 
     <target name="compile" depends="clean">
+        <echo message="Creating build directory..."/>
         <mkdir dir="${build.dir}"/>
+        <echo message="Compiling source files..."/>
         <javac srcdir="${src.dir}" destdir="${build.dir}"/>
     </target>
 
     <target name="build" depends="compile">
+        <echo message="Creating dist directory..."/>
         <mkdir dir="${dist.dir}"/>
-        <jar destfile="${dist.dir}/installer.jar" basedir="${build.dir}"/>
+        <echo message="Running IzPack to create installer..."/>
         <java jar="${izpack.jar}" fork="true" failonerror="true">
             <arg value="-o"/>
             <arg value="${dist.dir}/installer.jar"/>
             <arg value="-c"/>
             <arg value="installer.xml"/>
-            <arg value="-b"/>
-            <arg value="${dist.dir}/installer.jar"/>
         </java>
+        <echo message="Installer created at ${dist.dir}/installer.jar"/>
     </target>
 </project>
